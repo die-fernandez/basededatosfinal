@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+	<nav th:replace="fragments/nav :: nav">.........</nav>
+	<div th:include="fragments/sideMenu :: sideMenu"></div>
+	<div
+		th:replace="fragments/deleteConfirmationModal :: deleteConfirmationModal"></div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h1 class="fragments/page-header">Users </h1>
+	</div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<table class="table table-striped data-tables">
+			<thead>
+				<tr>
+					<th>Usuario</th>					
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Role</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.username}"></td>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.surname}"></td>
+					<td th:text="${user.role}"></td>
+					<td><a class="btn btn-default" href="#modal_delete"
+						data-toggle="modal" th:attr="data-id='/users/delete/'+${user.id}"><span
+							class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+							<td><a th:href="@{'users/edit/'} + ${user.id}" class="btn btn-default"> 
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{users/new}" class="btn btn-default" role="button">Nuevo Usuario</a>
+	</div>
+	<div th:include="fragments/footer :: scripts"></div>
+	<div
+		th:replace="fragments/deleteConfirmationModal :: deleteConfirmationScripts"></div>
+</body>
+</html>

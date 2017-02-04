@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+	<nav th:replace="fragments/nav :: nav">.........</nav>
+	<div th:include="fragments/sideMenu :: sideMenu"></div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div class="container">
+			<div class="jumbotron vertical-center">
+			<img class="pull-right img-responsive img-circle" src="/images/profile.png"
+						alt="" />
+				<h1>Acceso Denegado</h1>
+				<h4>Disculpe no tiene permiso para realizar esta accion</h4>
+				
+			</div>
+		</div>
+	</div>
+
+	<div th:include="fragments/footer :: scripts"></div>
+</body>
+</html>

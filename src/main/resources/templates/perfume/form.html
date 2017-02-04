@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+	<nav th:replace="fragments/nav :: nav">.........</nav>
+	<div th:include="fragments/sideMenu :: sideMenu"></div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h1 class="fragments/page-header">Perfumes</h1>
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<form role="form" action="#" th:action="@{/perfumes}"
+			th:object="${perfume}" method="post">
+			<input name="id" th:value="*{id}" type="hidden"></input>
+			<div class="form-group">
+				<label for="codeName">Codigo</label> <input th:readonly="${perfume.id}!=null" name="codeName"
+					th:value="*{codeName}" type="text" class="form-control"
+					id="codeName"></input>
+				<p th:if="${#fields.hasErrors('codeName')}"
+					class="label label-danger" th:errors="*{codeName}"></p>
+			</div>
+			<div class="form-group">
+				<label for="name">Nombre</label> <input name="name"
+					th:value="*{name}" type="text" class="form-control" id="name"></input>
+				<p th:if="${#fields.hasErrors('name')}" class="label label-danger"
+					th:errors="*{name}"></p>
+			</div>
+			<div class="form-group">
+				<label for="presentation">Presentacion</label> <input name="presentation"
+					th:value="*{presentation}" type="text" class="form-control"
+					id="presentation"></input>
+				<p th:if="${#fields.hasErrors('presentation')}"
+					class="label label-danger" th:errors="*{presentation}"></p>
+			</div>
+				<div class="form-group">
+				<label for="fragance">Fragancia</label> <input name="fragance"
+					th:value="*{fragance}" type="text" class="form-control"
+					id="fragance"></input>
+				<p th:if="${#fields.hasErrors('fragance')}"
+					class="label label-danger" th:errors="*{fragance}"></p>
+			</div>
+			<div class="form-group">
+				<label for="stock">Stock</label> <input name="stock"
+					th:value="*{stock}" type="number" class="form-control" id="stock"></input>
+				<p th:if="${#fields.hasErrors('stock')}" class="label label-danger"
+					th:errors="*{stock}"></p>
+			</div>
+			<button type="submit" class="btn btn-info">Guardar</button>
+			<a href="/perfumes" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	
+<!--  	http://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_navbar_right&stacked=h-->
+
+
+<head th:replace="fragments/head :: head"></head>
+<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="nav">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a style="color: white;" class="navbar-brand" href="/"> Gesti&oacute;n de
+					Art&iacute;culos</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<div sec:authorize="isAuthenticated()">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form th:action="@{/logout}" method="post">
+							<button type="submit" class="btn-link"> <span
+							class="glyphicon glyphicon-log-out"></span>Cerrar Sesi&oacute;n</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+			<div sec:authorize="isAnonymous()">
+				<ul class="nav navbar-nav navbar-right">
+						<li><a href="login"> <span
+							class="glyphicon glyphicon-log-in"></span> Iniciar Sesi&oacute;n
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+</html>

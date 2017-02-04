@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+	<nav th:replace="fragments/nav :: nav">.........</nav>
+	<div th:include="fragments/sideMenu :: sideMenu"></div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h1 class="fragments/page-header">Ropa</h1>
+	</div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<form role="form" action="#" th:action="@{/clothes}" th:object="${clothes}"
+			method="post">
+			<input name="id" th:value="*{id}" type="hidden"></input>
+			<div class="form-group">
+				<label for="codeName">Codigo</label> <input th:readonly="${clothes.id}!=null" name="codeName"
+					th:value="*{codeName}" type="text" class="form-control"
+					id="codeName"></input>
+				<p th:if="${#fields.hasErrors('codeName')}"
+					class="label label-danger" th:errors="*{codeName}"></p>
+			</div>
+	<!-- 		<div class="form-group">
+				<label for="type">Tipo</label> <input name="type"
+					th:value="*{type}" type="text" class="form-control" id="type"></input>
+				<p th:if="${#fields.hasErrors('type')}" class="label label-danger"
+					th:errors="*{type}"></p>
+			</div> -->
+			<div class="form-group">
+				<label for="type">Tipo:</label> <select id="type"
+					th:field="*{type}">
+					<option th:each="type : ${types}" th:value="${type}"
+						th:text="${type}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="fabric">Tela</label> <input name="fabric"
+					th:value="*{fabric}" type="text" class="form-control" id="fabric"></input>
+				<p th:if="${#fields.hasErrors('fabric')}"
+					class="label label-danger" th:errors="*{fabric}"></p>
+			</div>
+			<div class="form-group">
+				<label for="color">Color</label> <input name="color"
+					th:value="*{color}" type="text" class="form-control" id="color"></input>
+				<p th:if="${#fields.hasErrors('color')}" class="label label-danger"
+					th:errors="*{color}"></p>
+			</div>
+			<div class="form-group">
+				<label for="size">Talle</label> <input name="size"
+					th:value="*{size}" type="text" class="form-control" id="size"></input>
+				<p th:if="${#fields.hasErrors('size')}"
+					class="label label-danger" th:errors="*{size}"></p>
+			</div>
+			<div class="form-group">
+				<label for="stock">Stock</label> <input name="stock"
+					th:value="*{stock}" type="number" class="form-control" id="stock"></input>
+				<p th:if="${#fields.hasErrors('stock')}"
+					class="label label-danger" th:errors="*{stock}"></p>
+			</div>
+			<button type="submit" class="btn btn-info">Guardar</button>
+			<a href="/clothes" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+</body>
+</html>

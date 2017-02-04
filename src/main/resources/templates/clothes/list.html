@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+	<nav th:replace="fragments/nav :: nav">.........</nav>
+	<div th:include="fragments/sideMenu :: sideMenu"></div>
+	<div
+		th:replace="fragments/deleteConfirmationModal :: deleteConfirmationModal"></div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h1 class="fragments/page-header">Ropa </h1>
+	</div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<table class="table table-striped data-tables">
+			<thead>
+				<tr>
+					<th>Codigo</th>					
+					<th>Tipo</th>
+					<th>Tela</th>
+					<th>Color</th>
+					<th>Talle</th>
+					<th>Stock</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="clothe : ${clothes}">
+					<td th:text="${clothe.codeName}"></td>
+					<td th:text="${clothe.type}"></td>
+					<td th:text="${clothe.fabric}"></td>
+					<td th:text="${clothe.color}"></td>
+					<td th:text="${clothe.size}"></td>
+					<td th:text="${clothe.stock}"></td>
+					<td><a class="btn btn-default" href="#modal_delete"
+						data-toggle="modal" th:attr="data-id='/clothes/delete/'+${clothe.id}"><span
+							class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+							<td><a th:href="@{'clothes/edit/'} + ${clothe.id}" class="btn btn-default"> 
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{clothes/new}" class="btn btn-default" role="button">Nuevo producto</a>
+	</div>
+	<div th:include="fragments/footer :: scripts"></div>
+	<div
+		th:replace="fragments/deleteConfirmationModal :: deleteConfirmationScripts"></div>
+</body>
+</html>

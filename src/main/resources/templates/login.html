@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="nav">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a style="color: white;" class="navbar-brand" href="/">
+					Gesti&oacute;n de Art&iacute;culos</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="content" style="padding-top: 7%;">
+		<div class="col-xs-12 col-sm-6 col-lg-4 col-md-offset-4 jumbotron"
+			style="border-radius: 30px;">
+			<h3 style="text-align: center; padding-bottom: 20px; color: #18BC9C;">
+				Iniciar sesi&oacute;n</h3>
+			<form class="form-horizontal" th:action="@{/login}" method="post">
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label"> Usuario: </label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" placeholder="username"
+							name="username" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"> Clave: </label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" placeholder="password"
+							name="password" />
+					</div>
+
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10 centered">
+						<input type="submit" class="btn btn-primary btn-block"
+							value="Iniciar Sesi&oacute;n" />
+					</div>
+				</div>
+				<div class="col-sm-offset-2 col-sm-10 centered"></div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10 centered">
+						<div th:if="${param.error}" class="label label-danger">Clave
+							y/o Usuario incorrectos</div>
+
+						<div th:if="${param.logout}" class="label label-default">Se
+							cerr&oacute; la sesi&oacute;n.</div>
+
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
